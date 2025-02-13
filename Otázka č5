@@ -1,8 +1,7 @@
 SELECT 
-    PerformanceScore AS HodnoceniVykonu, 
-    AVG(DaysLateLast30) AS PrumernyPocetPozdnichPrichodu, 
+    PerformanceScore, 
+    AVG(Absences) AS PrumerAbsenci, 
     COUNT(*) AS PocetZamestnancu
-FROM employees
-WHERE Termd = 0  -- Pouze aktuálně zaměstnaní
+FROM tabulka
 GROUP BY PerformanceScore
-ORDER BY PrumernyPocetPozdnichPrichodu DESC;
+ORDER BY PrumerAbsenci DESC;
