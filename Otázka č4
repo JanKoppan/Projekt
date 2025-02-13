@@ -1,6 +1,6 @@
-SELECT RecruitmentSource, COUNT(*) AS Pocet_Zamestnancu
-FROM dataset
-WHERE STRFTIME('%Y', DateofHire) = '2011'
+SELECT RecruitmentSource, COUNT(*) AS Pocet_Najmu
+FROM data
+WHERE YEAR(DateofHire) = 2011
 GROUP BY RecruitmentSource
-ORDER BY Pocet_Zamestnancu DESC
+ORDER BY Pocet_Najmu DESC
 LIMIT 1;
