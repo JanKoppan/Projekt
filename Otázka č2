@@ -1,0 +1,3 @@
+SELECT AVG(Salary) AS Prumerna_Mzda
+FROM dataset
+WHERE Termd = 0 AND PositionID IN (27, 20);
