@@ -1,0 +1,13 @@
+WITH RECURSIVE Hierarchy AS (
+    SELECT ManagerID, EmpID, 1 AS Level
+    FROM dataset
+    WHERE ManagerID IS NULL  -- Nejvyšší úroveň (např. CEO)
+    
+    UNION ALL
+    
+    SELECT d.ManagerID, d.EmpID, h.Level + 1
+    FROM dataset d
+    JOIN Hierarchy h ON d.ManagerID = h.EmpID
+)
+SELECT MAX(Level) AS Pocet_Urovni_Rizeni
+FROM Hierarchy;
