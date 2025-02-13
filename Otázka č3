@@ -1,1 +1,3 @@
-
+SELECT AVG(STRFTIME('%Y', '2010-12-31') - STRFTIME('%Y', DOB)) AS Prumerny_Vek
+FROM dataset
+WHERE DateofHire <= '2010-12-31';
