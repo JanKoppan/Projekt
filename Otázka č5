@@ -1,0 +1,8 @@
+SELECT 
+    PerformanceScore AS HodnoceniVykonu, 
+    AVG(DaysLateLast30) AS PrumernyPocetPozdnichPrichodu, 
+    COUNT(*) AS PocetZamestnancu
+FROM employees
+WHERE Termd = 0  -- Pouze aktuálně zaměstnaní
+GROUP BY PerformanceScore
+ORDER BY PrumernyPocetPozdnichPrichodu DESC;
