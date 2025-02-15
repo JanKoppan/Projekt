@@ -1,3 +1,6 @@
-SELECT AVG(Salary) AS Prumerna_Mzda_Senioru
-FROM data
-WHERE EmpStatusID = 1 AND Position LIKE '%Senior%';
+-- Druhá otázka - Jaká je průměrná mzda aktuálně zaměstnaných seniorních lidí?
+SELECT AVG(Salary) AS Prumerna_Mzda
+FROM NEWTABLE_1
+WHERE 
+    (Position LIKE '%Senior%' OR Position LIKE '%Sr.%')
+    AND EmploymentStatus = 'Active';
