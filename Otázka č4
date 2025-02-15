@@ -1,6 +1,6 @@
-SELECT RecruitmentSource, COUNT(*) AS Pocet_Najmu
-FROM data
-WHERE YEAR(DateofHire) = 2011
+SELECT RecruitmentSource, COUNT(*) AS HiresCount
+FROM NEWTABLE_1
+WHERE SUBSTR(DateOfHire, -4) = '2011'
 GROUP BY RecruitmentSource
-ORDER BY Pocet_Najmu DESC
+ORDER BY HiresCount DESC
 LIMIT 1;
