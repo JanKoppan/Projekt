@@ -1,15 +1,11 @@
 WITH RECURSIVE Hierarchie AS (
     SELECT EmpID, ManagerID, 1 AS Uroven
-    FROM Employees
-    WHERE ManagerID IS NULL  
-
-    UNION ALL
-
+    FROM NEWTABLE_1
+    WHERE TRIM(ManagerID) = ''
+  UNION ALL
     SELECT e.EmpID, e.ManagerID, h.Uroven + 1
-    FROM Employees e
-    JOIN Hierarchie h ON e.ManagerID = h.EmpID
+    FROM NEWTABLE_1 e
+    JOIN Hierarchie h ON TRIM(e.ManagerID) = TRIM(h.EmpID)
 )
-SELECT Uroven, COUNT(*) AS Pocet_Zamestnancu
-FROM Hierarchie
-GROUP BY Uroven
-ORDER BY Uroven;
+SELECT MAX(Uroven) AS pocet_urovni_rizeni
+FROM Hierarchie;
