@@ -9,3 +9,8 @@ WITH RECURSIVE Hierarchie AS (
 )
 SELECT MAX(Uroven) AS pocet_urovni_rizeni
 FROM Hierarchie;
+
+-- Kontrola správnosti počtu úrovní řízení
+SELECT e.EmpID, e.ManagerID, m.EmpID AS ManagerFound
+FROM NEWTABLE_1 e
+LEFT JOIN NEWTABLE_1 m ON TRIM(e.ManagerID) = TRIM(m.EmpID);
