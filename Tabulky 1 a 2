@@ -1,17 +1,15 @@
 -- Tabulka Učebna
 CREATE TABLE Ucebna (
-    UcebnaID INT PRIMARY KEY,
-    Nazev VARCHAR(100) NOT NULL,
-    Kapacita INT CHECK (Kapacita > 0)
+    UcebnaID INTEGER PRIMARY KEY,
+    Nazev TEXT NOT NULL,
+    Kapacita INTEGER NOT NULL CHECK (Kapacita > 0)
 );
 -- Tabulka Přednáška
 CREATE TABLE Prednaska (
-    PrednaskaID INT PRIMARY KEY,
-    Nazev VARCHAR(255) NOT NULL,
-    Cas DATETIME NOT NULL,
-    Kapacita INT CHECK (Kapacita > 0),
-    UcebnaID INT,
-    LektorID INT,
-    FOREIGN KEY (UcebnaID) REFERENCES Ucebna(UcebnaID),
-    FOREIGN KEY (LektorID) REFERENCES Lektor(LektorID)
+    PrednaskaID INTEGER PRIMARY KEY,
+    UcebnaID INTEGER NOT NULL,
+    DenVTydnu TEXT NOT NULL,
+    Pocatek TIME NOT NULL,
+    Konec TIME NOT NULL,
+    FOREIGN KEY (UcebnaID) REFERENCES Ucebna(UcebnaID)
 );
