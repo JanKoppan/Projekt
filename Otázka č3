@@ -1,3 +1,20 @@
-SELECT AVG(2010 - YEAR(DOB)) AS Prumerny_Vek_2010
-FROM data
-WHERE DateofTermination IS NULL OR DateofTermination >= '2010-12-31';
+-- Třetí otázka - Jaký byl průměrný věk zaměstnanců společnosti k 31.12.2010?
+SELECT 
+    AVG(
+        (
+            strftime('%Y', '2010-12-31') 
+            - CASE 
+                WHEN CAST(substr(DOB, 7, 2) AS INTEGER) <= 20 
+                     THEN 2000 + CAST(substr(DOB, 7, 2) AS INTEGER)
+                ELSE 1900 + CAST(substr(DOB, 7, 2) AS INTEGER)
+              END
+        )
+        - (
+            strftime('%m-%d', '2010-12-31') 
+            < (substr(DOB, 1, 2) || '-' || substr(DOB, 4, 2))
+          )
+    ) AS Average_Age_2010
+FROM NEWTABLE_1
+WHERE DOB IS NOT NULL
+  AND DOB <> ''
+  AND LENGTH(DOB) = 8;
